@@ -15,7 +15,7 @@ namespace SpaceInvaders
         
         [Header("References")]
         public ObjectShaker CameraShaker;
-        public Material VignetteMaterial; // @TODO move to GameConfig?
+        public Material VignetteMaterial;
         
         [Space]
         public AudioController AudioController;

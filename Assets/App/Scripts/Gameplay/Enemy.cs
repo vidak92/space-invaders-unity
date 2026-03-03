@@ -29,6 +29,8 @@ namespace SpaceInvaders
         public bool IsKilled { get; private set; }
         
         private GameController GameController => ServiceLocator.Get<GameController>();
+        private GameConfig GameConfig => ServiceLocator.Get<GameConfig>();
+        private EnemiesConfig EnemiesConfig => GameConfig.EnemiesConfig;
 
         public void Init(string name)
         {
@@ -79,8 +81,7 @@ namespace SpaceInvaders
             Collider.enabled = false;
             SetActive(true);
 
-            // @TODO config
-            transform.DOScale(2f, duration)
+            transform.DOScale(EnemiesConfig.EnemyScale, duration)
                 .SetDelay(delay)
                 .SetEase(Ease.OutBack)
                 .OnComplete(() =>

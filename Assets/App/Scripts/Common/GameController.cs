@@ -221,7 +221,7 @@ namespace SpaceInvaders
             _lives--;
             _player.OnLifeLost(_lives);
             UIController.GameplayScreen.SetGameStats(_score, _wave, _lives);
-            AppController.CameraShaker.StartShake(1f); // @TODO config?
+            AppController.CameraShaker.StartShake(1f); // @TODO config
             AudioController.PlaySound(AudioController.ExplosionSound, volume: 0.1f); // @TODO config
         }
 

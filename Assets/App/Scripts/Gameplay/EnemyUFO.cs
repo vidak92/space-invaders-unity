@@ -89,8 +89,8 @@ namespace SpaceInvaders
                         positionX = UFOConfig.BoundsRight;
                     }
                     
-                    var offsetY = 2.2f; // @TODO config
-                    transform.position = new Vector3(positionX, GridBounds.Top + offsetY, 0f);
+                    var topOffsetY = 2.2f; // @TODO config
+                    transform.position = new Vector3(positionX, GridBounds.Top + topOffsetY, 0f);
                 }
             }
         }

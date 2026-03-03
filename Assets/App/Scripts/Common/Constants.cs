@@ -11,6 +11,12 @@ namespace SpaceInvaders
         public const string VIGNETTE_PROPERTY_IS_ADDITIVE = "_IsAdditive";
     }
 
+    public static class SortingLayers
+    {
+        public const string DEFAULT = "Default";
+        public const string BACKGROUND = "Background";
+    }
+
     public static class Strings
     {
         public const string SCORE_INFO_PREFIX = ": ";

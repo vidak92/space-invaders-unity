@@ -19,7 +19,7 @@ namespace SpaceInvaders
         private ProjectileConfig _projectileConfig;
         private Vector3 _direction;
         
-        private GameController GameController => ServiceLocator.Get<GameController>(); // @TODO use callbacks instead
+        private GameController GameController => ServiceLocator.Get<GameController>();
         
         public void Init(ProjectileConfig projectileConfig, Vector3 sourcePosition)
         {

@@ -9,6 +9,8 @@ namespace SpaceInvaders
 {
     public class UIController : MonoBehaviour
     {
+        public const float TRANSITION_DURATION = 0.5f;
+        
         public Canvas Canvas;
         public GameObject SafeAreaRoot;
         
@@ -78,15 +80,16 @@ namespace SpaceInvaders
             IsTransitioning = true;
             // TransitionImage.SetAlpha(0f);
             TransitionImage.gameObject.SetActive(true);
-            
+
+            var duration = TRANSITION_DURATION / 2f;
             var seq = DOTween.Sequence();
-            seq.Append(TransitionImage.DOFade(1f, 0.25f)); // @TODO config
+            seq.Append(TransitionImage.DOFade(1f, duration));
             seq.AppendCallback(() =>
             {
                 SetActiveScreen(toScreen);
                 onComplete?.Invoke();
             });
-            seq.Append(TransitionImage.DOFade(0f, 0.25f)); // @TODO config
+            seq.Append(TransitionImage.DOFade(0f, duration));
             seq.AppendCallback(() =>
             {
                 IsTransitioning = false;

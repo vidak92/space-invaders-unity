@@ -26,7 +26,6 @@ namespace SpaceInvaders
     public class EnemyFormation : MonoBehaviour
     {
         public AnimationCurve MoveCurve;
-        public AnimationCurve TiltCurve;
         
         private Enemy[,] _enemies;
         private EnemyUFO _ufo;
@@ -44,9 +43,7 @@ namespace SpaceInvaders
         private List<Enemy> _enemiesWhoCanShoot = new List<Enemy>();
         private FloatRange _shotDelayRange = new FloatRange();
         private Timer _shotTimer;
-
-        private readonly Vector3 _startPosition = new Vector3(0f, 10f, 0f); // @TODO config
-
+        
         private GameController GameController => ServiceLocator.Get<GameController>();
         private AudioController AudioController => ServiceLocator.Get<AudioController>();
         
@@ -85,7 +82,7 @@ namespace SpaceInvaders
             _ufo = Instantiate(GameConfig.UFOPrefab);
             _ufo.Init();
             
-            transform.position = _startPosition;
+            transform.position = FormationConfig.StartPosition;
 
             SetFormationState(FormationState.None);
         }
@@ -95,7 +92,7 @@ namespace SpaceInvaders
             var dt = Time.deltaTime;
             
             // debug draw
-            DebugDraw.Settings.SortLayerName = "Background"; // @TODO constant
+            DebugDraw.Settings.SortLayerName = SortingLayers.BACKGROUND;
             var bounds = GridBounds;
             var cellSize = new Vector3(GridCellWidth, GridCellHeight, 0f);
             var halfCellSize = cellSize / 2f;
@@ -117,7 +114,7 @@ namespace SpaceInvaders
                 var position2 = topLeft + new Vector3(positionX, -gridHeight, 0f);
                 DebugDraw.DrawLine(position1, position2);
             }
-            DebugDraw.Settings.SortLayerName = "Default"; // @TODO constant
+            DebugDraw.Settings.SortLayerName = SortingLayers.DEFAULT;
             
             // enemies
             var totalEnemies = _enemies.Length;
@@ -136,7 +133,6 @@ namespace SpaceInvaders
             {
                 case FormationState.None:
                 {
-                    // @TODO ?
                     break;
                 }
                 case FormationState.Spawn:
@@ -436,7 +432,7 @@ namespace SpaceInvaders
                 if (lastHorizontalMoveDirection == MoveDirection.Right && canMoveLeft) { return MoveDirection.Left; }
             }
 
-            // @NOTE Fallback, shouldn't happen.
+            Debug.LogError($"EnemyFormation: cannot get new move direction, returning current");
             return currentMoveDirection;
         }
 

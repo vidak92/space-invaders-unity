@@ -21,10 +21,7 @@ namespace SpaceInvaders
         private bool _isInvincible;
         private Timer _invincibleTimer;
         private bool _isKilled;
-
-        private List<Color> _materialColors = new List<Color>();
-        private Vector3 _startPosition = new Vector3(0f, -14f, 0f); // @TODO config
-
+        
         public bool IsActive { get; private set; }
 
         private AppController AppController => ServiceLocator.Get<AppController>();
@@ -61,7 +58,7 @@ namespace SpaceInvaders
 
         public void ResetState()
         {
-            transform.position = _startPosition;
+            transform.position = PlayerConfig.StartPosition;
             ResetColor();
 
             _moveDirectionX = 0f;

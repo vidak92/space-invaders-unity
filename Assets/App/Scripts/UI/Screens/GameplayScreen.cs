@@ -64,7 +64,6 @@ namespace SpaceInvaders
             InputService.SetInputAction(InputAction.Shoot, false);
         }
 
-        // @TODO separate methods for each stat?
         public void SetGameStats(int score, int wave, int lives)
         {
             ScoreItem.ValueText.text = $"{score}";

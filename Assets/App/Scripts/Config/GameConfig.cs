@@ -41,6 +41,7 @@ namespace SpaceInvaders
         [Space]
         [Range(1, 5)]
         public int StartLives;
+        public Vector3 StartPosition;
 
         [Space]
         public ProjectileConfig ProjectileConfig;
@@ -69,6 +70,9 @@ namespace SpaceInvaders
         public int Enemy2ScoreValue;
         public int Enemy3ScoreValue;
         public int EnemyUFOScoreValue;
+
+        [Space]
+        public float EnemyScale;
         
         [Space]
         public ProjectileConfig ProjectileConfig;
@@ -94,7 +98,7 @@ namespace SpaceInvaders
                 default:
                     break;
             }
-            // @TODO log error
+            Debug.LogError($"GameConfig: enemy type {enemyType} not handled");
             return 0;
         }
     }
@@ -119,6 +123,7 @@ namespace SpaceInvaders
         public Vector2Int GridSize;
         public int EnemiesPerRow;
         public List<EnemyType> EnemyRows = new List<EnemyType>();
+        public Vector3 StartPosition;
     }
 
     [CreateAssetMenu(menuName = "Config/Gameplay Config")]
@@ -145,9 +150,9 @@ namespace SpaceInvaders
         [Header("Enemies")]
         public EnemiesConfig EnemiesConfig;
         
-        public Enemy GetEnemyPrefab(EnemyType type)
+        public Enemy GetEnemyPrefab(EnemyType enemyType)
         {
-            switch (type)
+            switch (enemyType)
             {
                 case EnemyType.Enemy1:
                     return Enemy1Prefab;
@@ -156,7 +161,7 @@ namespace SpaceInvaders
                 case EnemyType.Enemy3:
                     return Enemy3Prefab;
                 default:
-                    // @TODO log error
+                    Debug.LogError($"GameConfig: enemy type {enemyType} not handled");
                     return null;
             }
         }

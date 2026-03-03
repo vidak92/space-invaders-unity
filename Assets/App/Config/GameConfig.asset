@@ -36,6 +36,7 @@ MonoBehaviour:
     InvincibilityBlinkSpeed: 6
     InvincibilityColorTint: {r: 0.6, g: 0.24, b: 0.24, a: 1}
     StartLives: 3
+    StartPosition: {x: 0, y: -14, z: 0}
     ProjectileConfig:
       MoveSpeed: 35
       InitialVerticalOffset: 1.5
@@ -49,6 +50,7 @@ MonoBehaviour:
     Enemy2ScoreValue: 20
     Enemy3ScoreValue: 30
     EnemyUFOScoreValue: 300
+    EnemyScale: 2
     ProjectileConfig:
       MoveSpeed: 15
       InitialVerticalOffset: 2
@@ -58,7 +60,6 @@ MonoBehaviour:
         m_Bits: 512
       MaxPositionY: 20
     UFOConfig:
-      IsEnabled: 1
       MoveSpeedRange:
         Min: 10
         Max: 20
@@ -95,3 +96,4 @@ MonoBehaviour:
       GridSize: {x: 8, y: 12}
       EnemiesPerRow: 10
       EnemyRows: 0200000001000000010000000000000000000000
+      StartPosition: {x: 0, y: 10, z: 0}
