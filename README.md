@@ -1,5 +1,5 @@
 # Space Invaders
-<img src="GIFs/space_invaders_clip_720.gif" width="720"/>
+<img src="GIFs/space_invaders_clip_720p.gif" width="720"/>
 
 ## About
 - This is a sample game project created with [Unity](https://unity.com/)
