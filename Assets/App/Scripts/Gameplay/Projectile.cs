@@ -15,11 +15,14 @@ namespace SpaceInvaders
     public class Projectile : MonoBehaviour
     {
         public Rigidbody2D Rigidbody;
+        public Transform TipTransform;
         
         private ProjectileConfig _projectileConfig;
         private Vector3 _direction;
         
         private GameController GameController => ServiceLocator.Get<GameController>();
+        public ProjectileDirection Direction => _projectileConfig.Direction;
+        public float TipOffsetY => TipTransform.position.y - transform.position.y;
         
         public void Init(ProjectileConfig projectileConfig, Vector3 sourcePosition)
         {
@@ -49,6 +52,7 @@ namespace SpaceInvaders
 
         public void FixedUpdate()
         {
+            // return;
             if (Mathf.Abs(transform.position.y) > _projectileConfig.MaxPositionY)
             {
                 Rigidbody.linearVelocity = Vector2.zero;

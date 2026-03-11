@@ -9,6 +9,15 @@ namespace SpaceInvaders
         
         public const string VIGNETTE_PROPERTY_POWER = "_VignettePower";
         public const string VIGNETTE_PROPERTY_IS_ADDITIVE = "_IsAdditive";
+
+        public const int DESTRUCTIBLE_QUAD_GRID_COL_COUNT = 9;
+        public const int DESTRUCTIBLE_QUAD_GRID_ROW_COUNT = 4;
+        public const int DESTRUCTIBLE_QUAD_GRID_FLAG_COUNT = DESTRUCTIBLE_QUAD_GRID_COL_COUNT * DESTRUCTIBLE_QUAD_GRID_ROW_COUNT;
+        
+        public const string DESTRUCTIBLE_QUAD_SHADER_PROPERTY_ROWS = "_Rows";
+        public const string DESTRUCTIBLE_QUAD_SHADER_PROPERTY_COLS = "_Cols";
+        public const string DESTRUCTIBLE_QUAD_SHADER_PROPERTY_FLAGS = "_Flags";
+        public const string DESTRUCTIBLE_QUAD_SHADER_PROPERTY_MAIN_TEX_ST = "_MainTex_ST";
     }
 
     public static class SortingLayers

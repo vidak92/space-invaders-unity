@@ -139,6 +139,10 @@ namespace SpaceInvaders
         public Enemy Enemy3Prefab;
         public EnemyUFO UFOPrefab;
         public Projectile ProjectilePrefab;
+        
+        [Header("Environment")]
+        public ParticleSystem EnvironmentHitParticlesPrefab;
+        public float EnvironmentParentPositionY;
 
         [Header("Vignette")]
         public FloatRange VignettePowerRange;

@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "com.sgs.sgs-tools": {
-      "version": "https://github.com/vidak92/sgs-tools.git#v0.1.3",
+      "version": "https://github.com/vidak92/sgs-tools.git#v0.1.4",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.textmeshpro": "4.0.0"
       },
-      "hash": "f45b21ae52f9451b0403d01ed4cb5d56c7ee034e"
+      "hash": "8449839944a9866f197c05a4bcf85d5261c535a1"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",

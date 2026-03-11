@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GameConfig
   m_EditorClassIdentifier: 
   CameraSizeRange:
-    Min: 18
-    Max: 22
+    Min: 20
+    Max: 24
   CanvasScaleRange:
     Min: 1
     Max: 0.85
@@ -24,6 +24,8 @@ MonoBehaviour:
   Enemy3Prefab: {fileID: 1968792991693110759, guid: 02b354dd8411a4278aeb4991db5207f4, type: 3}
   UFOPrefab: {fileID: 6895895283300890278, guid: 9290df79b4f2d48ee9033cece6fae9cd, type: 3}
   ProjectilePrefab: {fileID: -3368777625204048398, guid: ae4edd1e85a500a4982a1809c63b235a, type: 3}
+  EnvironmentHitParticlesPrefab: {fileID: 7794930249871740562, guid: 2734a16b7a5d7489fb8653b169fd0a43, type: 3}
+  EnvironmentParentPositionY: -11
   VignettePowerRange:
     Min: 0.5
     Max: 1.5
@@ -36,7 +38,7 @@ MonoBehaviour:
     InvincibilityBlinkSpeed: 6
     InvincibilityColorTint: {r: 0.6, g: 0.24, b: 0.24, a: 1}
     StartLives: 3
-    StartPosition: {x: 0, y: -14, z: 0}
+    StartPosition: {x: 0, y: -17, z: 0}
     ProjectileConfig:
       MoveSpeed: 35
       InitialVerticalOffset: 1.5
@@ -89,11 +91,11 @@ MonoBehaviour:
         Min: 2
         Max: 1
       GridBounds:
-        Left: -18
-        Right: 18
-        Bottom: -8
+        Left: -21
+        Right: 21
+        Bottom: -6
         Top: 10
-      GridSize: {x: 8, y: 12}
+      GridSize: {x: 7, y: 12}
       EnemiesPerRow: 10
       EnemyRows: 0200000001000000010000000000000000000000
       StartPosition: {x: 0, y: 10, z: 0}

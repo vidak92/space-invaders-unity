@@ -1,4 +1,6 @@
+using DG.Tweening;
 using SGSTools.Components;
+using SGSTools.Extensions;
 using SGSTools.Util;
 using UnityEngine;
 
@@ -17,8 +19,11 @@ namespace SpaceInvaders
     public class GameController : MonoBehaviour
     {
         public EnemyFormation EnemyFormation;
+        public Transform EnvironmentParent;
+        public DestructibleQuad[] DestructibleQuads;
         
         private ObjectPool<Projectile> _projectilePool;
+        private ObjectPool<ParticleSystem> _environmentHitParticlePool;
         
         private GameState _currentState;
         private Player _player;
@@ -36,8 +41,8 @@ namespace SpaceInvaders
 
         public void Init()
         {
-            _projectilePool = ObjectPool<Projectile>.CreateWithGameObject(GameConfig.ProjectilePrefab, 100, "ProjectilePool");
-            // _projectilePool.Parent.parent = transform;
+            _projectilePool = ObjectPool<Projectile>.CreateWithGameObject(GameConfig.ProjectilePrefab, 50, "ProjectilePool");
+            _environmentHitParticlePool = ObjectPool<ParticleSystem>.CreateWithGameObject(GameConfig.EnvironmentHitParticlesPrefab, 10, "EnvironmentHitParticlesPool");
 
             _player = Instantiate(GameConfig.PlayerPrefab, transform, true);
             _player.OnPlayerKilled += GameOver;
@@ -45,8 +50,14 @@ namespace SpaceInvaders
 
             EnemyFormation.transform.parent = transform;
             EnemyFormation.Init();
-
             EnemyFormation.UFOTransform.parent = transform;
+
+            foreach (var destructibleQuad in DestructibleQuads)
+            {
+                destructibleQuad.Init();
+            }
+            EnvironmentParent.SetPositionY(GameConfig.EnvironmentParentPositionY);
+            EnvironmentParent.gameObject.SetActive(false);
 
             ShowMainMenu();
         }
@@ -174,6 +185,11 @@ namespace SpaceInvaders
                 _player.ResetState();
                 _player.SetActive(true);
                 EnemyFormation.StartWave();
+                foreach (var destructibleQuad in DestructibleQuads)
+                {
+                    destructibleQuad.ResetFlags();
+                }
+                EnvironmentParent.gameObject.SetActive(true);
             });
         }
 
@@ -210,6 +226,7 @@ namespace SpaceInvaders
         public void ExitGame()
         {
             EnemyFormation.EndWave();
+            EnvironmentParent.gameObject.SetActive(false);
             _player.SetActive(false);
             _projectilePool.ReturnAllActiveObjects();
             ShowMainMenu();
@@ -238,6 +255,20 @@ namespace SpaceInvaders
             _wave++;
             UIController.GameplayScreen.SetGameStats(_score, _wave, _lives);
             AudioController.PlaySound(AudioController.NewWaveSound);
+        }
+
+        public void OnEnvironmentHit(Projectile projectile, Vector3 position)
+        {
+            DespawnProjectile(projectile);
+            var particles = _environmentHitParticlePool.Get();
+            particles.transform.position = position;
+            particles.Play();
+            AppController.CameraShaker.StartShake(0f); // @TODO config
+            DOVirtual.DelayedCall(particles.main.duration, () =>
+            {
+                particles.Stop();
+                _environmentHitParticlePool.Return(particles);
+            });
         }
 
         public void SpawnProjectile(ProjectileConfig projectileConfig, Vector3 position)
